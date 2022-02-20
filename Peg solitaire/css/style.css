@@ -1,0 +1,435 @@
+:root
+{
+--block-size:75px;
+--piece-size:calc(var(--block-size) * 1 / 4);
+}
+
+body
+{
+justify-content: center;
+background:linear-gradient(to top left, #222, #A701A1);
+}
+
+#main_screen,
+#ranking_screen,
+#credits_screen,
+#pause_screen,
+#end_game_screen
+{
+width:calc(var(--block-size) * 7); 
+height:100vh; 
+gap: 10px;
+padding:10px;
+}
+
+#main_screen,
+#ranking_screen,
+#credits_screen,
+#end_game_screen
+{
+background-color:rgba(1,1,1,1);
+}
+
+#main_screen
+{
+grid-template-rows:70px 50px;
+}
+
+.title,
+#no_data_message
+{
+color:#A701A1;
+text-align:center;
+font-family:DejaVu Sans Light;
+border: 3px solid #A701A1;
+background-color: rgba(0,0,0,.5);
+}
+
+#main_screen_options_box
+{
+grid-template-columns:repeat(3,1fr);
+justify-content:center;
+gap:10px;
+
+}
+
+#ranking_screen,
+#credits_screen,
+#end_game_screen
+{
+grid-template-rows:70px auto 50px;
+}
+
+.table_box,
+#credits_list
+{
+max-height:210px;
+overflow-y:scroll;
+}
+
+
+#ranking_screen_table,
+#end_game_screen_table 
+{
+border-collapse: collapse;
+}
+
+#ranking_screen_table thead tr,
+#end_game_screen_table thead tr
+{
+background-color:#A701A1;
+}
+
+#ranking_screen_table tr
+{
+height:40px;
+}
+
+#end_game_screen_table tr
+{
+height:50px;
+}
+
+#ranking_screen_table tbody tr:nth-child(odd),
+#end_game_screen_table tbody tr:nth-child(odd)
+{
+background-color: rgba(0,0,0,.8);
+}
+
+#ranking_screen_table tbody tr:nth-child(even),
+#end_game_screen_table tbody tr:nth-child(even)
+{
+background-color: rgba(167,1,161,.5); 
+}
+
+
+#ranking_screen_table th,
+#ranking_screen_table td,
+#end_game_screen_table th,
+#end_game_screen_table td
+{
+text-align:center;
+
+}
+
+#ranking_screen_table th,
+#ranking_screen_table td
+{
+width:20%;
+}
+
+#end_game_screen_table th,
+#end_game_screen_table td
+{
+width:25%;
+}
+
+#end_game_screen_table tbody td input[type = 'text']
+{
+display: block;
+height:15px;
+width:100%;
+font-size: 12px;
+}
+
+#ranking_screen_option_box,
+#credits_screen_option_box,
+#end_game_screen_option_box
+{
+width:200px;
+}
+
+#credits_list,
+#credits_list li
+{
+display:block;
+}
+
+#credits_list li
+{
+margin:10px 0;
+padding:5px;
+background-color:#A701A1;
+color:#fff;
+}
+
+#credits_list li a
+{
+color:yellow;
+text-decoration:none;
+opacity:.8;
+}
+
+#credits_list li a:hover
+{
+opacity:1;
+}
+
+
+#pause_screen
+{
+justify-content: center;
+grid-template-columns: 200px;
+grid-template-rows:70px 50px;
+}
+
+#game_container
+{
+grid-template-rows: 40px max-content 50px;
+gap:10px;
+border-left: 3px solid linear-gradient(to top left, #FF4A59,#A701A1);
+border-right: 3px solid linear-gradient(to top left,#A701A1,#FF4A59);
+background-color: rgba(2,2,2,.4);
+padding: 10px;
+}
+
+#infos_box
+{
+background:linear-gradient(to top right,#A701A1,#222);
+grid-template-columns: repeat(3,auto);
+align-items:center;
+color:#fff;
+padding: 0 10px;
+gap:10px;
+}
+
+.remain_pieces_box
+{
+grid-template-columns: max-content max-content;    
+gap: 10px;
+}
+
+details summary
+{
+background:linear-gradient(to top right,#A701A1,#222);
+cursor: pointer;
+color:#fff;
+padding:10px;
+font-size:18px;
+}   
+
+#game_container_option_box
+{
+grid-template-columns: repeat(2,200px);
+gap:10px;
+justify-content:center;
+background:linear-gradient(to top right,#A701A1,#222);
+padding: 10px;
+}
+
+#pieces_box
+{         
+grid-template-columns:repeat(7,var(--block-size));
+grid-template-rows: repeat(7,var(--block-size));
+justify-content: center;
+margin:10px 0;
+background-color:darkgray;
+}
+
+.blocked,
+.empty,
+.piece
+{
+background-color:darkgray;
+}
+
+.empty,
+.piece 
+{
+grid-template-columns: var(--piece-size);
+grid-template-rows: var(--piece-size);
+align-content: center;
+justify-content: center;
+}
+
+
+.empty div,
+.piece div
+{
+border-radius:100%;
+background-color:rgb(65, 62, 62);
+}
+
+
+.empty div
+{
+opacity:.1;
+}
+
+
+.active
+{
+    cursor:pointer;
+}
+
+.possible_move 
+{
+    cursor: pointer;
+}
+
+.selected div
+{
+    animation: selected_piece_animation;
+  
+}
+
+.possible_move div
+{
+    animation: possible_move_animation;
+}
+
+.selected div,
+.possible_move div
+{
+    animation-duration:.5s;
+    animation-timing-function:ease-in;
+    animation-iteration-count:infinite;
+}
+
+#end_game_screen_table tr,
+#ranking_screen_table tr:not(.golden_row)
+{
+    color:#fff;
+}
+
+.golden_row
+{
+    color:gold;
+}
+
+
+@keyframes selected_piece_animation
+{
+    0%
+    {
+       box-shadow: 0 0 0;
+     }
+
+
+    100%
+    {
+       box-shadow: 0 0 10px rgba(0,0,0,1);
+    }
+}
+
+
+@keyframes possible_move_animation
+{
+    0%
+    {
+       box-shadow: 0 0 0;
+       opacity: .5;
+     }
+
+
+    100%
+    {
+       box-shadow: 0 0 10px rgba(255,0,0,.1);
+       background-color:red;
+    }
+
+}
+
+
+@media screen and (max-width:920px)
+{
+   
+
+    #ranking_screen_option_box,
+    #credits_screen_option_box,
+    #end_game_screen_option_box
+    {
+    width:150px;    
+    }
+
+ 
+
+    #game_container_option_box
+    {
+    grid-template-columns: repeat(2,150px);
+    } 
+
+}
+
+
+@media screen and (max-width:720px)
+{
+    :root
+    {
+    --block-size:65px;
+    }
+   
+
+    #ranking_screen_option_box,
+    #credits_screen_option_box,
+    #end_game_screen_option_box
+    {
+    width:120px;    
+    }
+
+  
+
+    #game_container_option_box
+    {
+    grid-template-columns: repeat(2,120px);
+    } 
+
+}
+
+
+@media screen and (max-width:520px)
+{
+    :root
+    {
+    --block-size:55px;
+    }
+  
+
+    #ranking_screen_option_box,
+    #credits_screen_option_box,
+    #end_game_screen_option_box
+    {
+    width:110px;    
+    }
+
+
+
+    details summary
+    {
+        font-size:15px;
+    }
+    
+    #main_screen_options_box button,
+    #ranking_screen_option_box button,
+    #credits_screen_option_box button,
+    #game_container_option_box button,
+    #end_game_screen_option_box button
+    {
+        font-size: 12px;
+    }
+
+    #ranking_screen_table tr th,
+    #end_game_screen_table tr th
+    {
+        font-size: 15px;
+    }
+
+    #ranking_screen_table tr td,
+    #end_game_screen_table tr td,
+    #infos_box
+    {
+        font-size: 14px;
+    }
+
+}
+
+
+@media screen and (max-width:420px)
+{
+    :root
+    {
+    --block-size:45px;
+    }
+
+   
+}

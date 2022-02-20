@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <title>Peg solitaire</title>
+    <meta charset = "UTF-8">
+    <meta name = "viewport" content="width=device-width, initial-scale=1.0">
+    <link rel = "icon" href = "images/favicon.ico"/>
+    <link rel = "stylesheet" href = "css/default_style.css">
+    <link rel = "stylesheet" href = "css/class_message_style.css">
+    <link rel = "stylesheet" type = "text/css" href = "css/style.css">
+ </head>
+<body>
+
+    <div class = "fill_all">
+        <div id = "main_screen">
+
+                <h1 class = "title">
+                    Peg solitaire
+                </h1>
+
+                <div id = "main_screen_options_box" >
+                    <div>
+                        <button  id = "btn_open_ranking_screen">Ranking</button>
+                    </div>
+
+                    <div>
+                        <button id = "btn_start_game">Start Game</button>
+                    </div>
+        
+                    <div>
+                        <button  id = "btn_open_credits_screen">Credits</button>
+                    </div>
+                </div>
+            
+        </div>
+    </div>
+
+    <div class = "fill_all visibility_hidden">
+        <div id = "ranking_screen" class = "default_content_box">
+            <h1 class = "title">Ranking</h1>
+
+            <div class = "table_box">
+                <table id = "ranking_screen_table">
+                    <thead>
+                        <tr>
+                            <th>Pos</th>
+                            <th>Player</th>
+                            <th>Remain Pieces</th>
+                            <th>Time</th>
+                            <th>Date</th>
+                       </tr>
+                    </thead>
+                 
+                        <tbody>
+    
+                        </tbody>
+                </table>
+            </div>
+           
+   
+            <h2 id = "no_data_message">There is no Data</h2>
+       
+            <div id = "ranking_screen_option_box">
+                <button  id = "btn_close_ranking_screen">Back</button>
+            </div>
+         
+        </div>
+    </div>
+
+    <div class = "fill_all visibility_hidden">
+        <div id = "credits_screen"  class = "default_content_box">
+            <h1 class = "title">Credits</h1>
+
+            <ul id = "credits_list">
+                <li>Projected and developed by: <a href = "https://github.com/kaduHonorato" target = "blank">Carlos Eduardo</a></li>
+                <li>Pause / Resume sound effects: <a href = "https://www.youtube.com/watch?v=Ccfv1CX_u9A" target = "blank">All Sounds</a></li>
+                <li>Victory sound effect: <a href= "http://freesoundeffect.net" target = "blank">freesoundeffect.net</a></li>
+            </ul>
+
+            <div id = "credits_screen_option_box">
+                <button  id = "btn_close_credits_screen">Back</button>
+            </div>
+         
+        </div>
+    </div>
+
+
+    <div class = "fill_all visibility_hidden">
+        <div id = "pause_screen">
+            <h1 class = "title">Paused</h1>
+
+            <div id = "pause_screen_option_box">
+                <button  id = "btn_resume_game">Resume</button>
+            </div>
+    
+        </div>
+    </div>
+
+    <div class = "fill_all visibility_hidden">
+        <div id = "end_game_screen" class = "default_content_box" >
+            <h1 class = "title">You Win!</h1>
+
+            <table id = "end_game_screen_table">
+                <thead>
+                    <tr>
+                        <th>Player</th>
+                        <th>Remain Pieces</th>
+                        <th>Time</th>
+                        <th>Date</th>
+                   </tr>
+                </thead>
+
+                <tbody>
+                   
+                </tbody>
+            </table>
+
+            <div id = "end_game_screen_option_box">
+                <button id = "btn_save_game_result">Save</button>
+            </div>
+    
+        </div>
+    </div>
+
+
+    <div id = "game_container" class = "default_content_box">
+        
+        <div id = "infos_box">
+            <div class = "remain_pieces_box">
+                <span>Remain Pieces:</span>  <span id = "remain_pieces_txt">0</span>
+            </div>
+            
+            <div class = "remain_time_box">
+                <span id = "timer_value">00:00:00</span>
+            </div>
+            
+            <div class = "btn_pause_box">
+                <button id = "btn_pause_game">Pause</button>
+            </div>
+        </div>
+ 
+        <details id = "puzzle_blocks_box">
+            <summary>Puzzle</summary>
+                   
+            <div id = "pieces_box">
+         
+            </div>
+          
+        </details>
+                            
+        <div id = "game_container_option_box">
+            <div>
+                <button id = "btn_reset_game">New Game</button>
+            </div>
+
+            <div>
+                <button id = "btn_exit_game">Exit</button>
+            </div>
+                   
+        </div>
+     
+    </div>
+
+    <template id = "table_row_template">
+        <tr>
+            <td class = "player_pos_cell display_none"></td>
+            <td class = "player_name_cell"></td>
+            <td class = "game_remain_pieces_cell"></td>
+            <td class = "game_time_cell"></td>
+            <td class = "date_cell"></td>
+        </tr>
+    </template>
+
+    <template id = "temp_alert_box">
+        <div class = "fill_all">
+            <div class = "alert_box">
+                <div>
+                    <h1 class = "title_alert_box">Message</h1>
+                </div>   
+            
+                <div>
+                    <span class = "txt_alert_box"></span>
+                </div>
+                
+                <div>
+                    <button class = "bt_alert_box">Ok</button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+
+    <template id = "temp_confirm_box">
+        <div class = "fill_all">
+            <div class = "confirm_box">
+                <div>
+                    <h1 class = "title_confirm_box">Confirm</h1>
+                </div>   
+
+                <div>
+                    <span class = "txt_confirm_box"></span>
+                </div>
+                
+                <div>
+                    <button class = "bt_confirm_box no">No</button>
+                    <button class = "bt_confirm_box yes">Yes</button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+ 
+    <script src = "javascript/local_storage_data.js"></script>
+    <script src = "javascript/message.js"></script>
+    <script src = "javascript/timer.js"></script>
+    <script src = "javascript/script.js"></script>
+</body>
+</html>
